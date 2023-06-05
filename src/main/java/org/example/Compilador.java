@@ -17,7 +17,7 @@ public class Compilador {
 
     public void compile(){
         CharStream input = CharStreams.fromString(this.entrada);
-        PascalLexer lexer = new PascalLexer(input);
+        SyntacticLexer lexer = new SyntacticLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         tokens.fill();
         List<Token> tokenList = tokens.getTokens();
@@ -29,7 +29,7 @@ public class Compilador {
             int column = token.getCharPositionInLine();
             System.out.println("Token: " + tokenName + " | Texto: " + tokenText + " | Linha: " + line + " | Coluna: " + column);
         }
-        PascalParser parser = new PascalParser(tokens);
+        SyntacticParser parser = new SyntacticParser(tokens);
         ParseTree tree = parser.program();
     }
 }
